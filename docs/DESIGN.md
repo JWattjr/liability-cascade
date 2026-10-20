@@ -10,7 +10,7 @@ One deployment represents one ordered pipeline and, at most, one reported incide
 
 This is a source-based differentiation finding, not a claim of global novelty. If Phase 2 merely reuses Faultline's role assignment or compares only its eventual payee, the distinction would collapse and implementation must stop.
 
-The user approved Phase 1 and authorized Phase 2. The latest instruction is **Phase 2 only, then stop**: implement, lint, run direct-mode tests, and commit locally. Do not push, create repositories, deploy, or fetch keys. Review and any subsequent Phase 3 work require a later instruction. Historical Phase 3 planning below is not an instruction to execute it during Phase 2.
+Phase 2 was delivered and stopped at its local handoff. The owner subsequently authorized a stronger-model code review and Phase 3 end to end on 2026-10-20, with no further approval stop. `docs/REVIEW.md` records the review and adversarial re-verification. Phase 3 may publish fixture text in the separate approved public evidence repository and deploy on StudioNet; the contract repository must stay private, its single push is reserved for the end, keys must never be printed, and the Portal must never be submitted. Stop on an unexpected live judgment or a true blocker.
 
 ## 2. Authority boundary and frozen configuration
 
@@ -336,11 +336,11 @@ E `_assess_notice` (540-644) compares registered references with a new publicati
 
 H `_assess_scope` (261-303) reviews containment, constraint preservation and overlap against the specific parent. `_activate_handoff` (318-347) assigns a child budget and owner; `record_spend`, `complete_assignment` and `refund_unspent_budget` (483-541) conserve budget through completion. The overlap is local context, frozen constraints and synthetic accounting. Its model evaluates prospective task authorization, not recorded input/output performance, and the source has no post-incident earliest-violation slash path. A local-context judgment alone is not this proposal's novelty.
 
-## 12. Phase 2 acceptance plan (not executed)
+## 12. Approved Phase 2 acceptance plan
 
 Implementation uses the pinned existing environment at `C:\Users\User\Desktop\Genlayer apps\intelligent-contracts-v2\.venv`, with LF source and `.gitattributes` containing `* text=auto eol=lf`. Do not replace the venv or silently upgrade the toolchain. The direct-mode and lint skills were inspected for Phase 2.
 
-The future test matrix must include all requested cases and the state-machine edges introduced here:
+The approved test matrix includes all requested cases and the state-machine edges introduced here. Executed results are recorded in PHASE2_HANDOFF.md and REVIEW.md:
 
 | Area | Required evidence |
 |---|---|
@@ -367,6 +367,6 @@ Later live evidence must cover the two separate deployments (B introduces fault,
 
 **Phase 3 evidence-publication plan, clarified by the owner.** Public fixture text will live under `liability-cascade/` in `JWattjr/genlayer-demo-evidence`, published before deployment and referenced at its exact commit SHA. That evidence repository may contain fixture text only: no contract code, keys or secrets. The contract repository `JWattjr/liability-cascade` stays private. This resolves the original conflict between private evidence, unauthenticated validator retrieval and a first/only contract-repository push at the end. GitHub documents [private-repository access restrictions](https://docs.github.com/en/repositories/creating-and-managing-repositories/about-repositories#about-repository-visibility) and [authentication for repository content, including raw representations](https://docs.github.com/en/rest/repos/contents#get-repository-content).
 
-The latest scope is nevertheless Phase 2 only: do not create either repository, publish evidence, push, retrieve credentials or deploy during this phase. Do not expose repository credentials in on-chain URLs, embed tokens in fixture references, or make the contract repository public. Later live execution needs an eligible nonoperator claimant account in addition to the three operator accounts; account availability is not established by local tests and no keys are fetched for this handoff.
+The original Phase 2 handoff prohibited repository creation, publication, credentials and deployment during that phase. The subsequent review/Phase 3 instruction now explicitly authorizes those live actions under the constraints above. Never expose repository credentials in on-chain URLs, embed tokens in fixture references, or make the contract repository public. Live execution uses three distinct operator accounts and a fourth nonoperator claimant; only public addresses and aliases are recorded.
 
-Current gates: design/differentiation **PASS** with this source review; local build/test **PASS**, with exact results and source commit in `PHASE2_HANDOFF.md`; live/source/finality **NOT RUN**. No deployed address or release proofs exist for Liability Cascade at this phase. A final live-release PASS/FAIL report and Portal note must not be presented as verified before those phases run.
+Pre-live gates: design/differentiation PASS with the section 11 source review; local build/review/test PASS with 193 tests, three lint checks and SDK validation (REVIEW.md); live/source/finality NOT RUN at the prepared source commit. The release manifest records the subsequent live results; do not present live PASS until source bytes, judgments, accounting and transaction finality are verified.

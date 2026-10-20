@@ -1,0 +1,119 @@
+{
+  "repository": "https://github.com/JWattjr/genlayer-demo-evidence",
+  "visibility": "PUBLIC",
+  "fixture_commit": "61b7d56d8147e0f97d89b4e8f4b424141ebaff3c",
+  "folder": "liability-cascade",
+  "measured_at": "2026-10-20T06:05:04.979631+00:00",
+  "measurement_tool": "curl.exe",
+  "redirects_followed": false,
+  "fixtures": [
+    {
+      "path": "incident-a/A-input.txt",
+      "raw_url": "https://raw.githubusercontent.com/JWattjr/genlayer-demo-evidence/61b7d56d8147e0f97d89b4e8f4b424141ebaff3c/liability-cascade/incident-a/A-input.txt",
+      "http_status": 200,
+      "byte_length": 128,
+      "sha256": "54d8f95d0c1acd455817a557ccc83d1617f5149d71f0a0480e89bd121c83b7be",
+      "matches_local_bytes": true,
+      "line_endings": "LF"
+    },
+    {
+      "path": "incident-a/A-output.txt",
+      "raw_url": "https://raw.githubusercontent.com/JWattjr/genlayer-demo-evidence/61b7d56d8147e0f97d89b4e8f4b424141ebaff3c/liability-cascade/incident-a/A-output.txt",
+      "http_status": 200,
+      "byte_length": 117,
+      "sha256": "697c66d7f098b2cfa4a9213c8322532e774acc2eceffb33c51a254de2af81c5d",
+      "matches_local_bytes": true,
+      "line_endings": "LF"
+    },
+    {
+      "path": "incident-a/B-input.txt",
+      "raw_url": "https://raw.githubusercontent.com/JWattjr/genlayer-demo-evidence/61b7d56d8147e0f97d89b4e8f4b424141ebaff3c/liability-cascade/incident-a/B-input.txt",
+      "http_status": 200,
+      "byte_length": 117,
+      "sha256": "697c66d7f098b2cfa4a9213c8322532e774acc2eceffb33c51a254de2af81c5d",
+      "matches_local_bytes": true,
+      "line_endings": "LF"
+    },
+    {
+      "path": "incident-a/B-output.txt",
+      "raw_url": "https://raw.githubusercontent.com/JWattjr/genlayer-demo-evidence/61b7d56d8147e0f97d89b4e8f4b424141ebaff3c/liability-cascade/incident-a/B-output.txt",
+      "http_status": 200,
+      "byte_length": 117,
+      "sha256": "305cf384392bba47b66e6e99968aaa939da866aef2bb4e202f0c35edb5d4a2a0",
+      "matches_local_bytes": true,
+      "line_endings": "LF"
+    },
+    {
+      "path": "incident-a/C-input.txt",
+      "raw_url": "https://raw.githubusercontent.com/JWattjr/genlayer-demo-evidence/61b7d56d8147e0f97d89b4e8f4b424141ebaff3c/liability-cascade/incident-a/C-input.txt",
+      "http_status": 200,
+      "byte_length": 117,
+      "sha256": "305cf384392bba47b66e6e99968aaa939da866aef2bb4e202f0c35edb5d4a2a0",
+      "matches_local_bytes": true,
+      "line_endings": "LF"
+    },
+    {
+      "path": "incident-a/C-output.txt",
+      "raw_url": "https://raw.githubusercontent.com/JWattjr/genlayer-demo-evidence/61b7d56d8147e0f97d89b4e8f4b424141ebaff3c/liability-cascade/incident-a/C-output.txt",
+      "http_status": 200,
+      "byte_length": 117,
+      "sha256": "305cf384392bba47b66e6e99968aaa939da866aef2bb4e202f0c35edb5d4a2a0",
+      "matches_local_bytes": true,
+      "line_endings": "LF"
+    },
+    {
+      "path": "incident-b/A-input.txt",
+      "raw_url": "https://raw.githubusercontent.com/JWattjr/genlayer-demo-evidence/61b7d56d8147e0f97d89b4e8f4b424141ebaff3c/liability-cascade/incident-b/A-input.txt",
+      "http_status": 200,
+      "byte_length": 128,
+      "sha256": "54d8f95d0c1acd455817a557ccc83d1617f5149d71f0a0480e89bd121c83b7be",
+      "matches_local_bytes": true,
+      "line_endings": "LF"
+    },
+    {
+      "path": "incident-b/A-output.txt",
+      "raw_url": "https://raw.githubusercontent.com/JWattjr/genlayer-demo-evidence/61b7d56d8147e0f97d89b4e8f4b424141ebaff3c/liability-cascade/incident-b/A-output.txt",
+      "http_status": 200,
+      "byte_length": 106,
+      "sha256": "bce245bd4a29ad71fbc212eaf8c27ec10cf6a03b59a16aee7a435c02515cdd40",
+      "matches_local_bytes": true,
+      "line_endings": "LF"
+    },
+    {
+      "path": "incident-b/B-input.txt",
+      "raw_url": "https://raw.githubusercontent.com/JWattjr/genlayer-demo-evidence/61b7d56d8147e0f97d89b4e8f4b424141ebaff3c/liability-cascade/incident-b/B-input.txt",
+      "http_status": 200,
+      "byte_length": 106,
+      "sha256": "bce245bd4a29ad71fbc212eaf8c27ec10cf6a03b59a16aee7a435c02515cdd40",
+      "matches_local_bytes": true,
+      "line_endings": "LF"
+    },
+    {
+      "path": "incident-b/B-output.txt",
+      "raw_url": "https://raw.githubusercontent.com/JWattjr/genlayer-demo-evidence/61b7d56d8147e0f97d89b4e8f4b424141ebaff3c/liability-cascade/incident-b/B-output.txt",
+      "http_status": 200,
+      "byte_length": 117,
+      "sha256": "305cf384392bba47b66e6e99968aaa939da866aef2bb4e202f0c35edb5d4a2a0",
+      "matches_local_bytes": true,
+      "line_endings": "LF"
+    },
+    {
+      "path": "incident-b/C-input.txt",
+      "raw_url": "https://raw.githubusercontent.com/JWattjr/genlayer-demo-evidence/61b7d56d8147e0f97d89b4e8f4b424141ebaff3c/liability-cascade/incident-b/C-input.txt",
+      "http_status": 200,
+      "byte_length": 117,
+      "sha256": "305cf384392bba47b66e6e99968aaa939da866aef2bb4e202f0c35edb5d4a2a0",
+      "matches_local_bytes": true,
+      "line_endings": "LF"
+    },
+    {
+      "path": "incident-b/C-output.txt",
+      "raw_url": "https://raw.githubusercontent.com/JWattjr/genlayer-demo-evidence/61b7d56d8147e0f97d89b4e8f4b424141ebaff3c/liability-cascade/incident-b/C-output.txt",
+      "http_status": 200,
+      "byte_length": 117,
+      "sha256": "305cf384392bba47b66e6e99968aaa939da866aef2bb4e202f0c35edb5d4a2a0",
+      "matches_local_bytes": true,
+      "line_endings": "LF"
+    }
+  ]
+}
