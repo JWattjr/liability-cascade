@@ -1,0 +1,32 @@
+{
+  "status": "PASS",
+  "checked_at": "2026-10-20T06:19:47.2140440+00:00",
+  "scope": "Fingerprints of the five source files used by DESIGN.md section 11; this is not a global novelty claim",
+  "sources": [
+    {
+      "path": "faultline/contracts/faultline.py",
+      "sha256": "7403d5ea7c2c493c3dba44de944ed5e81c126f62121d0cb83ed2ec0ed9fe164d",
+      "matches_approved_design": true
+    },
+    {
+      "path": "slash-court/contracts/slash_court.py",
+      "sha256": "e39b7c25489bc3a54a83f40a6cc3f0219583e89d747274777eb21faaed616bba",
+      "matches_approved_design": true
+    },
+    {
+      "path": "slash-court/contracts/operator_bond_vault.py",
+      "sha256": "2c51484e09c596c06f0264f98e5beb67e8c075fa02cc7024afb523f77e2554b3",
+      "matches_approved_design": true
+    },
+    {
+      "path": "intelligent-contracts-v2/evidence-retraction-registry/contracts/evidence_retraction_registry.py",
+      "sha256": "a3243d9dbaa092835eb86844a50300d29be30fb3747caea0421eee37621c4b61",
+      "matches_approved_design": true
+    },
+    {
+      "path": "intelligent-contracts-v2/delegated-task-handoff/contracts/delegated_task_handoff.py",
+      "sha256": "c81026b0baed9f1c0cc0fca32ad0a839cc75f3fd5f8560b9b918aa2cba267683",
+      "matches_approved_design": true
+    }
+  ]
+}

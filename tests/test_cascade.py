@@ -757,10 +757,13 @@ def test_review_every_stored_consensus_leaf_is_bound(pipeline, path):
 def test_review_valid_foreign_snapshot_cannot_be_replayed(pipeline, binding):
     p = pipeline
     ready(p)
-    p.assess()
-    before = p.contract._instance.state_json
     scope = p.contract._instance._snapshot.__func__.__globals__
     foreign = copy.deepcopy(p.contract._instance._snapshot(p.state()))
+    p.assess()
+    before = p.contract._instance.state_json
+    # Positive control: the same pre-adjudication snapshot must validate.
+    baseline = scope["_candidate"](scope["_assess"](foreign), foreign)
+    assert p.vm.run_validator(leader_result=baseline) is True
     # Build a structurally valid candidate for another deployment/incident,
     # rather than merely assigning a random invalid snapshot hash.
     if binding == "contract":
@@ -773,6 +776,9 @@ def test_review_valid_foreign_snapshot_cannot_be_replayed(pipeline, binding):
         foreign["records"]["A"]["recorded_at"] += 1
     else:
         foreign["config"]["steps"][0]["bond_units"] += 1
+        owner = foreign["config"]["steps"][0]["operator"]
+        foreign["ledger"][owner]["deposited"] += 1
+        foreign["ledger"][owner]["locked"] += 1
     foreign.pop("snapshot_digest")
     foreign["snapshot_digest"] = scope["_hash"](foreign)
     candidate = scope["_candidate"](scope["_assess"](foreign), foreign)

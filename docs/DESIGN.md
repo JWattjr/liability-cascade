@@ -1,6 +1,6 @@
 # LIABILITY CASCADE - Phase 1 design
 
-Date: 2026-10-20 (Africa/Lagos). Status: approved design with the Phase 2 operator-claimant amendment. Phase 2 implementation and verification are documented in `PHASE2_HANDOFF.md`; live verification has not started.
+Date: 2026-10-20 (Africa/Lagos). Status: approved design with the Phase 2 operator-claimant amendment. Phase 2 implementation and verification are documented in `PHASE2_HANDOFF.md`; the reviewed live release is documented in deployments/studionet-release-2026-10-20.json.
 
 ## 1. Scope and decision
 
@@ -369,4 +369,4 @@ Later live evidence must cover the two separate deployments (B introduces fault,
 
 The original Phase 2 handoff prohibited repository creation, publication, credentials and deployment during that phase. The subsequent review/Phase 3 instruction now explicitly authorizes those live actions under the constraints above. Never expose repository credentials in on-chain URLs, embed tokens in fixture references, or make the contract repository public. Live execution uses three distinct operator accounts and a fourth nonoperator claimant; only public addresses and aliases are recorded.
 
-Pre-live gates: design/differentiation PASS with the section 11 source review; local build/review/test PASS with 193 tests, three lint checks and SDK validation (REVIEW.md); live/source/finality NOT RUN at the prepared source commit. The release manifest records the subsequent live results; do not present live PASS until source bytes, judgments, accounting and transaction finality are verified.
+Final release gates: design/differentiation PASS, local review/tests/lint PASS (193 tests), live/source/finality PASS. The full release manifest records two byte-matched deployments, 26 FINALIZED transactions, eight expected rollbacks, stored judgments and 28 passing accounting readbacks. See REVIEW.md, TEST_MATRIX.md and EVIDENCE.md. The contract repository remains private; no Portal submission was made.

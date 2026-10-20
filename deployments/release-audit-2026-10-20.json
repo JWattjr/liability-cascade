@@ -1,0 +1,152 @@
+{
+  "status": "PASS",
+  "source_commit": "da39762abefd3027ab72d47821c06313db1e1993",
+  "source_blob": "53ff0f7eb7b7be57115886476c55e282b8ab3492",
+  "source_sha256": "b5118d6cd32ef3a642795b4e046fa0bdc13b9f60960fd900833d7e80962dff40",
+  "transactions_finalized": 26,
+  "successful_executions": 18,
+  "expected_rollbacks": 8,
+  "accepted_observed": 26,
+  "accounting_readbacks": 28,
+  "expected_reverts_preserved_state": [
+    "incident-b:wrong-caller-record",
+    "incident-b:replacement-rejected",
+    "incident-a:wrong-caller-record",
+    "incident-a:replacement-rejected",
+    "incident-b:operator-claim-rejected",
+    "incident-b:replay-rejected",
+    "incident-a:operator-claim-rejected",
+    "incident-a:replay-rejected"
+  ],
+  "snapshot_and_receipt_hashes_verified": 2,
+  "evidence_observations_verified": 12,
+  "fixture_files_curl_measured": 12,
+  "fixture_total_bytes": 1404,
+  "vote_counts_by_operation": {
+    "incident-b:deploy": {
+      "agree": 4,
+      "idle": 1
+    },
+    "incident-b:deposit-A": {
+      "idle": 2,
+      "agree": 3
+    },
+    "incident-b:deposit-B": {
+      "agree": 3,
+      "idle": 2
+    },
+    "incident-b:deposit-C": {
+      "idle": 2,
+      "agree": 3
+    },
+    "incident-b:wrong-caller-record": {
+      "agree": 3,
+      "idle": 2
+    },
+    "incident-b:record-A": {
+      "idle": 2,
+      "agree": 3
+    },
+    "incident-b:replacement-rejected": {
+      "idle": 1,
+      "agree": 4
+    },
+    "incident-b:record-B": {
+      "idle": 2,
+      "agree": 3
+    },
+    "incident-b:record-C": {
+      "agree": 4,
+      "idle": 1
+    },
+    "incident-a:deploy": {
+      "idle": 2,
+      "agree": 3
+    },
+    "incident-a:deposit-A": {
+      "idle": 2,
+      "agree": 3
+    },
+    "incident-a:deposit-B": {
+      "agree": 4,
+      "idle": 1
+    },
+    "incident-a:deposit-C": {
+      "idle": 2,
+      "agree": 3
+    },
+    "incident-a:wrong-caller-record": {
+      "agree": 3,
+      "idle": 2
+    },
+    "incident-a:record-A": {
+      "idle": 2,
+      "agree": 3
+    },
+    "incident-a:replacement-rejected": {
+      "agree": 4,
+      "idle": 1
+    },
+    "incident-a:record-B": {
+      "agree": 3,
+      "idle": 2
+    },
+    "incident-a:record-C": {
+      "agree": 4,
+      "idle": 1
+    },
+    "incident-b:operator-claim-rejected": {
+      "agree": 3,
+      "idle": 2
+    },
+    "incident-b:report": {
+      "agree": 3,
+      "idle": 2
+    },
+    "incident-b:adjudicate": {
+      "agree": 3,
+      "idle": 2
+    },
+    "incident-b:replay-rejected": {
+      "agree": 4,
+      "idle": 1
+    },
+    "incident-a:operator-claim-rejected": {
+      "agree": 3,
+      "idle": 2
+    },
+    "incident-a:report": {
+      "idle": 2,
+      "agree": 3
+    },
+    "incident-a:adjudicate": {
+      "agree": 3,
+      "idle": 2
+    },
+    "incident-a:replay-rejected": {
+      "agree": 4,
+      "idle": 1
+    }
+  },
+  "sensitive_named_fields_found": 0,
+  "gates": {
+    "distinctiveness": {
+      "status": "PASS",
+      "evidence": "docs/DESIGN.md section 11 and verification/distinctiveness-source-check.json"
+    },
+    "local_review_tests_lint": {
+      "status": "PASS",
+      "tests": 193,
+      "lint_ast_checks": 3,
+      "sdk_validation": true,
+      "evidence": "docs/REVIEW.md and verification/"
+    },
+    "live": {
+      "status": "PASS",
+      "deployments": 2,
+      "all_transactions_finalized": true,
+      "source_byte_equality": true,
+      "fixture_bytes_curl_verified": true
+    }
+  }
+}

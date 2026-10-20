@@ -39,6 +39,6 @@
   },
   "passed": 193,
   "public_methods": 7,
-  "lf_files_checked": 24,
+  "lf_files_checked": 27,
   "scope": "Local direct VM and captured validators only; no network consensus, keys, deployment or push."
 }
