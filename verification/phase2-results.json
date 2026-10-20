@@ -32,13 +32,13 @@
     }
   },
   "pytest": {
-    "tests": 118,
+    "tests": 193,
     "failures": 0,
     "errors": 0,
     "skipped": 0
   },
-  "passed": 118,
+  "passed": 193,
   "public_methods": 7,
-  "lf_files_checked": 19,
+  "lf_files_checked": 20,
   "scope": "Local direct VM and captured validators only; no network consensus, keys, deployment or push."
 }

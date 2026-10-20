@@ -719,3 +719,105 @@ def test_adjudication_requires_report_and_enforces_both_time_boundaries(pipeline
     p.rejected(p.claimant, "adjudicate", "adjudication window closed")
     p.vm.warp(iso(R))
     assert p.assess() == "PIPELINE_FAULT"
+
+
+_RESULT_LEAVES = [("schema_version",), ("snapshot_digest",)] + [
+    ("steps", index, field)
+    for index in range(3)
+    for field in ("step_id", "index", "operator", "recorded", "evidence_status", "semantic_verdict", "effective_verdict", "basis")
+] + [
+    ("steps", index, side, field)
+    for index in range(3)
+    for side in ("input", "output")
+    for field in ("url", "committed_digest", "status", "http_status", "reason_code", "byte_length", "observed_digest")
+]
+
+
+@pytest.mark.parametrize("path", _RESULT_LEAVES, ids=lambda path: "/".join(map(str, path)))
+def test_review_every_stored_consensus_leaf_is_bound(pipeline, path):
+    p = pipeline
+    ready(p)
+    p.assess()
+    before = p.contract._instance.state_json
+    original = p.state()["assessment"]
+    forged = copy.deepcopy(original)
+    parent = forged
+    for key in path[:-1]:
+        parent = parent[key]
+    value = parent[path[-1]]
+    parent[path[-1]] = not value if type(value) is bool else value + 1 if type(value) is int else value + "-forged" if type(value) is str else 0
+    # run_validator invokes the exact validator_fn captured from adjudicate.
+    assert p.vm.run_validator(leader_result=forged) is False
+    assert p.vm.run_validator(leader_result=original) is True
+    assert p.contract._instance.state_json == before
+    p.check()
+
+
+@pytest.mark.parametrize("binding", ["contract", "pipeline", "claimant", "recording", "bond"])
+def test_review_valid_foreign_snapshot_cannot_be_replayed(pipeline, binding):
+    p = pipeline
+    ready(p)
+    p.assess()
+    before = p.contract._instance.state_json
+    scope = p.contract._instance._snapshot.__func__.__globals__
+    foreign = copy.deepcopy(p.contract._instance._snapshot(p.state()))
+    # Build a structurally valid candidate for another deployment/incident,
+    # rather than merely assigning a random invalid snapshot hash.
+    if binding == "contract":
+        foreign["contract_address"] = "0x" + "99" * 20
+    elif binding == "pipeline":
+        foreign["config"]["pipeline_id"] = "another-pipeline"
+    elif binding == "claimant":
+        foreign["report"]["claimant"] = "0x" + "98" * 20
+    elif binding == "recording":
+        foreign["records"]["A"]["recorded_at"] += 1
+    else:
+        foreign["config"]["steps"][0]["bond_units"] += 1
+    foreign.pop("snapshot_digest")
+    foreign["snapshot_digest"] = scope["_hash"](foreign)
+    candidate = scope["_candidate"](scope["_assess"](foreign), foreign)
+    assert scope["_attribute"](candidate) == ("PIPELINE_FAULT", 1)
+    assert p.vm.run_validator(leader_result=candidate) is False
+    assert p.contract._instance.state_json == before
+    p.check()
+
+
+def test_review_valid_forged_same_payer_requires_independent_work(pipeline, monkeypatch):
+    p = pipeline
+    ready(p)
+    p.assess()
+    before = p.contract._instance.state_json
+    forged = copy.deepcopy(p.state()["assessment"])
+    forged["steps"][2].update(semantic_verdict="VIOLATION", effective_verdict="VIOLATION")
+    scope = p.contract._instance._snapshot.__func__.__globals__
+    original_assess = scope["_assess"]
+    calls = []
+
+    def independent(snapshot):
+        calls.append(snapshot["snapshot_digest"])
+        return original_assess(snapshot)
+
+    monkeypatch.setitem(scope, "_assess", independent)
+    assert scope["_attribute"](forged) == ("PIPELINE_FAULT", 1)
+    assert p.vm.run_validator(leader_result=forged) is False
+    assert len(calls) == 1
+    assert p.contract._instance.state_json == before
+
+
+def test_review_unequal_and_maximum_bonds_conserve_exact_integers(direct_vm, direct_deploy, direct_alice, direct_bob, direct_charlie, direct_owner):
+    ops = (direct_alice, direct_bob, direct_charlie)
+    bonds = (1, 10**18, 7)
+    steps = [{"step_id": sid, "operator": addr(op), "duty": "Perform duty " + sid, "bond_units": bond}
+             for sid, op, bond in zip(SID, ops, bonds)]
+    p = Pipeline(direct_vm, direct_deploy, ops, direct_owner, steps_json=json.dumps(steps))
+    for op, bond in zip(ops, bonds):
+        p.write(op, "deposit", bond)
+    p.record_all()
+    p.report()
+    assert p.assess() == "PIPELINE_FAULT"
+    totals = p.contract.get_accounting()["totals"]
+    assert totals["deposited"] == 10**18 + 8
+    assert totals["slashed"] == 10**18 and totals["refunded"] == 8
+    assert p.state()["award_credit"] == {addr(direct_owner): 10**18}
+    assert p.vm.run_validator() is True
+    p.rejected(direct_owner, "adjudicate", "terminal state")

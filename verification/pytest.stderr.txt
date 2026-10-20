@@ -1,4 +1,5 @@
 INFO: File `gltest.config.yaml` found in the current directory, using it
+INFO: Clearing artifacts directory: artifacts
 INFO: Using the following configuration:
 INFO:   RPC URL: http://127.0.0.1:4000/api
 INFO:   Selected Network: localnet
