@@ -59,3 +59,14 @@ The direct-mode Windows compatibility shim uses SDK v0.6.0-rc5 and explicit capt
 Bonds and payouts are synthetic units with no token custody. Fixture logs demonstrate classification; hashes prove byte consistency, not authentic execution or adjacent handoff continuity. Unavailable evidence before the first proven violation can block attribution; a permissionless transaction at/after the adjudication deadline refunds instead of proving innocence. Operator-address exclusion does not prevent an affiliated unconfigured claimant. URL syntax admission does not prove DNS/redirect publicness; this release uses only the measured commit-pinned raw GitHub URLs and claims no general network sandbox guarantee. Exact comparison can fail consensus when availability or semantic labels differ. The distinction from existing projects is scoped to the inspected local source snapshots, not global novelty.
 
 See [evidence inventory](docs/EVIDENCE.md) and [owner-only submission draft](SUBMISSION_DRAFT.md). Keep this repository private; no visibility conversion or Portal action is part of this release.
+
+## Additional live incidents 3 and 4
+
+- [0x56e7E3b200bD95ef44cea1a71cc3a626026E103f](https://explorer-studio.genlayer.com/address/0x56e7E3b200bD95ef44cea1a71cc3a626026E103f) — incident-3
+- [0x580326cD677EE0a613Aa4efAeb648A3cfa8Ed2A4](https://explorer-studio.genlayer.com/address/0x580326cD677EE0a613Aa4efAeb648A3cfa8Ed2A4) — incident-4
+
+Incident 3: **FAITHFUL / VIOLATION / VIOLATION → PIPELINE_FAULT**; only B slashed 100, A/C refunded 100 each, with C's VIOLATION retained. Incident 4: **UNCLEAR (UNAVAILABLE 404) / VIOLATION / FAITHFUL → UNATTRIBUTABLE**, AWAITING_REFUND with nobody slashed; early timeout reverted; deadline settlement refunded all 300 with zero slash and preserved the assessment.
+
+Both deploy the exact unchanged `da39762` source blob. New evidence commit `eb57d011fdea6cc3a8ddc2fa0abe798075e8d297` contains eleven LF text logs; the twelfth input reference deliberately returns 404. Twenty new transactions are FINALIZED (19 successful executions, one expected rollback), with 22 passing new readbacks. **Combined coverage: four deployments, 46 FINALIZED transactions, 50 passing readbacks.**
+
+The original sections above are preserved. See [complete extension evidence](docs/LIVE_EXTENSIONS.md), [extension audit](deployments/extension-audit-2026-10-20.json), and [combined manifest](deployments/studionet-release-2026-10-20.json). The private repository/source equality is checked after publication; no Portal submission is made.

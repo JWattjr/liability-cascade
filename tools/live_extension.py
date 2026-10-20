@@ -136,7 +136,11 @@ def main():
     if existing:
         run = existing
         if run['status'] == 'STOPPED_UNEXPECTED_JUDGMENT':
-            raise RuntimeError('Unexpected judgment already recorded; never retry')
+            live.event(extension_status=run['status'], message='Unexpected judgment already recorded; never retry')
+            raise SystemExit(1)
+        if run['status'] == 'LIVE_PASS':
+            live.event(extension_status='LIVE_PASS', message='Already complete; no transaction or historical entry touched')
+            return
     else:
         evidence = json.loads((ROOT / 'fixtures/evidence-extension-2026-10-20.json').read_text(encoding='utf-8'))
         run = {'id': RUN_ID, 'status': 'IN_PROGRESS', 'started_at': live.now(), 'source_commit': SOURCE_COMMIT,

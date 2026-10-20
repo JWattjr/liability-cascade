@@ -1,0 +1,176 @@
+{
+  "status": "PASS",
+  "source_commit": "da39762abefd3027ab72d47821c06313db1e1993",
+  "source_blob": "53ff0f7eb7b7be57115886476c55e282b8ab3492",
+  "source_sha256": "b5118d6cd32ef3a642795b4e046fa0bdc13b9f60960fd900833d7e80962dff40",
+  "original_manifest_entries_unchanged": true,
+  "original_counts": {
+    "incidents": 2,
+    "transactions": 26,
+    "readbacks": 28
+  },
+  "new_finalized_transactions": 20,
+  "new_successful_executions": 19,
+  "new_expected_rollbacks": 1,
+  "new_accepted_observed": 20,
+  "new_state_accounting_readbacks": 22,
+  "combined_finalized_transactions": 46,
+  "combined_readbacks": 50,
+  "combined_deployments": 4,
+  "fixture_commit": "eb57d011fdea6cc3a8ddc2fa0abe798075e8d297",
+  "published_new_lf_logs": 11,
+  "missing_404_references": 1,
+  "votes_by_operation": {
+    "incident-3:deploy": {
+      "agree": 5
+    },
+    "incident-3:deposit-A": {
+      "agree": 5
+    },
+    "incident-3:deposit-B": {
+      "agree": 5
+    },
+    "incident-3:deposit-C": {
+      "agree": 4,
+      "idle": 1
+    },
+    "incident-3:record-A": {
+      "idle": 2,
+      "agree": 3
+    },
+    "incident-3:record-B": {
+      "idle": 2,
+      "agree": 3
+    },
+    "incident-3:record-C": {
+      "agree": 3,
+      "idle": 2
+    },
+    "incident-4:deploy": {
+      "agree": 4,
+      "idle": 1
+    },
+    "incident-4:deposit-A": {
+      "agree": 4,
+      "idle": 1
+    },
+    "incident-4:deposit-B": {
+      "idle": 2,
+      "agree": 3
+    },
+    "incident-4:deposit-C": {
+      "agree": 3,
+      "idle": 2
+    },
+    "incident-4:record-A": {
+      "agree": 5
+    },
+    "incident-4:record-B": {
+      "agree": 5
+    },
+    "incident-4:record-C": {
+      "agree": 5
+    },
+    "incident-3:report": {
+      "agree": 3,
+      "idle": 2
+    },
+    "incident-3:adjudicate": {
+      "idle": 2,
+      "agree": 3
+    },
+    "incident-4:report": {
+      "agree": 3,
+      "idle": 2
+    },
+    "incident-4:adjudicate": {
+      "agree": 3,
+      "idle": 2
+    },
+    "incident-4:early-timeout-rejected": {
+      "agree": 4,
+      "idle": 1
+    },
+    "incident-4:deadline-refund": {
+      "idle": 2,
+      "agree": 3
+    }
+  },
+  "incidents": [
+    {
+      "id": "incident-3",
+      "address": "0x56e7E3b200bD95ef44cea1a71cc3a626026E103f",
+      "verdicts": [
+        "FAITHFUL",
+        "VIOLATION",
+        "VIOLATION"
+      ],
+      "outcome": "PIPELINE_FAULT",
+      "phase": "SETTLED_FAULT",
+      "ledger": {
+        "0x0839a6ddcec7aa5e6028490266d6d3efabe316b5": {
+          "available": 0,
+          "deposited": 100,
+          "locked": 0,
+          "refunded": 100,
+          "slashed": 0
+        },
+        "0x2c8eb5db1105a85be66badafed88d10cf393cdd8": {
+          "available": 0,
+          "deposited": 100,
+          "locked": 0,
+          "refunded": 0,
+          "slashed": 100
+        },
+        "0xdb433ff614bdd1ece21aa97221c3e0a7ecf79c92": {
+          "available": 0,
+          "deposited": 100,
+          "locked": 0,
+          "refunded": 100,
+          "slashed": 0
+        }
+      },
+      "award_credit": {
+        "0xbc1a363b1427531fcb05d03ddf4d34e729011186": 100
+      },
+      "snapshot_and_receipt_hashes_verified": true
+    },
+    {
+      "id": "incident-4",
+      "address": "0x580326cD677EE0a613Aa4efAeb648A3cfa8Ed2A4",
+      "verdicts": [
+        "UNCLEAR",
+        "VIOLATION",
+        "FAITHFUL"
+      ],
+      "outcome": "UNATTRIBUTABLE",
+      "phase": "SETTLED_UNATTRIBUTABLE",
+      "ledger": {
+        "0x0839a6ddcec7aa5e6028490266d6d3efabe316b5": {
+          "available": 0,
+          "deposited": 100,
+          "locked": 0,
+          "refunded": 100,
+          "slashed": 0
+        },
+        "0x2c8eb5db1105a85be66badafed88d10cf393cdd8": {
+          "available": 0,
+          "deposited": 100,
+          "locked": 0,
+          "refunded": 100,
+          "slashed": 0
+        },
+        "0xdb433ff614bdd1ece21aa97221c3e0a7ecf79c92": {
+          "available": 0,
+          "deposited": 100,
+          "locked": 0,
+          "refunded": 100,
+          "slashed": 0
+        }
+      },
+      "award_credit": {},
+      "snapshot_and_receipt_hashes_verified": true
+    }
+  ],
+  "sensitive_named_fields_found": 0
+}

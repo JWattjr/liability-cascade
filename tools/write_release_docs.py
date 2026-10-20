@@ -7,6 +7,7 @@ manifest_path = 'deployments/studionet-release-2026-10-20.json'
 data = json.loads((ROOT / manifest_path).read_text(encoding='utf-8'))
 audit = json.loads((ROOT / 'deployments/release-audit-2026-10-20.json').read_text(encoding='utf-8'))
 assert data['status'] == 'LIVE_PASS' and audit['status'] == 'PASS'
+assert not data.get('extension_runs'), 'Original documentation is archived; use tools/write_extension_docs.py for appended incidents'
 txs = {t['operation']: t for t in data['transactions']}
 
 

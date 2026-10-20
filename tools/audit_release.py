@@ -17,6 +17,11 @@ def digest(value):
 def main():
     path = ROOT / 'deployments/studionet-release-2026-10-20.json'
     data = json.loads(path.read_text(encoding='utf-8'))
+    if data.get('extension_runs'):
+        original = json.loads(subprocess.run(['git', 'show', '87ab2d1ecf04c586527d36e297ca3d4bd9ec0356:deployments/studionet-release-2026-10-20.json'], cwd=ROOT, capture_output=True, check=True).stdout)
+        for key, value in original.items():
+            assert (data[key][:len(value)] if key in ('incidents', 'transactions', 'readbacks') else data[key]) == value, 'Historical field changed: ' + key
+        data = original  # This auditor remains scoped to the preserved first release.
     assert data['status'] == 'LIVE_PASS'
     transactions = data['transactions']
     assert len(transactions) == 26 and len({t['hash'] for t in transactions}) == 26

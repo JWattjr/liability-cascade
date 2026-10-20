@@ -9,6 +9,7 @@ root = Path(__file__).resolve().parents[1]
 path = root / 'deployments/studionet-release-2026-10-20.json'
 data = json.loads(path.read_text(encoding='utf-8'))
 assert data['status'] == 'LIVE_PASS'
+assert not data.get('extension_runs'), 'Original metadata is immutable after append-only extensions'
 verification = json.loads((root / 'verification/phase2-results.json').read_text(encoding='utf-8'))
 assert verification['passed'] == 193 and verification['lint']['ok']
 assert not any(verification['pytest'][field] for field in ('failures', 'errors', 'skipped'))

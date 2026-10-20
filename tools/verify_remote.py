@@ -36,6 +36,17 @@ def main():
     files = [item['path'] for item in tree['tree'] if item['type'] == 'blob']
     assert all(path.endswith('.txt') for path in files)
     assert len([path for path in files if path.startswith('liability-cascade/')]) == 12
+    fixture_commits = [data['evidence']['fixture_commit']]
+    for extension in data.get('extension_runs', []):
+        assert extension['status'] == 'LIVE_PASS'
+        fixture_commit = extension['evidence']['fixture_commit']
+        fixture_commits.append(fixture_commit)
+        new_tree = json.loads(command(['gh', 'api', 'repos/JWattjr/genlayer-demo-evidence/git/trees/' + fixture_commit + '?recursive=1']))
+        names = [item['path'] for item in new_tree['tree'] if item['type'] == 'blob']
+        assert all(name.endswith('.txt') for name in names)
+        assert len([name for name in names if name.startswith('liability-cascade/incident-3/')]) == 6
+        assert len([name for name in names if name.startswith('liability-cascade/incident-4/')]) == 5
+        assert 'liability-cascade/incident-4/A-input-missing.txt' not in names
     assert not command(['git', 'status', '--porcelain']).strip()
     proof = {'status': 'PASS', 'verified_at': datetime.now(timezone.utc).isoformat(),
              'repository': repository['html_url'], 'repository_visibility': 'PRIVATE',
@@ -44,8 +55,11 @@ def main():
              'remote_source_git_blob': content['sha'], 'remote_source_sha256': hashlib.sha256(source).hexdigest(),
              'remote_source_matches_both_deployed_sources': all(i['deployed_source_matches_git_blob'] for i in data['incidents']),
              'public_fixture_commit': data['evidence']['fixture_commit'], 'public_tree_fixture_text_only': True,
-             'liability_fixture_files': 12, 'working_tree_clean': True, 'portal_submitted': False}
-    output = ROOT / 'artifacts/remote-publication-verification.json'
+             'liability_fixture_files': 12 + (11 if data.get('extension_runs') else 0),
+             'public_fixture_commits': fixture_commits, 'deployed_source_count': len(data['incidents']),
+             'remote_source_matches_all_deployed_sources': all(i['deployed_source_matches_git_blob'] for i in data['incidents']),
+             'working_tree_clean': True, 'portal_submitted': False}
+    output = ROOT / ('artifacts/remote-publication-verification-extension.json' if data.get('extension_runs') else 'artifacts/remote-publication-verification.json')
     output.parent.mkdir(exist_ok=True)
     output.write_text(json.dumps(proof, indent=2) + '\n', encoding='utf-8', newline='\n')
     print(json.dumps(proof))

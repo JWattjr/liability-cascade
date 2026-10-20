@@ -22,3 +22,14 @@ Pinned environment and exact results: **193 passed, 0 failed, 0 errors, 0 skippe
 | Actual lifecycle vs execution | Local mocks do not establish live finality | All 26 transactions FINALIZED: 18 SUCCESS/return and 8 ERROR/rollback; observed acceptance retained separately |
 
 All exact local test names and the full design requirement mapping remain in `docs/PHASE2_HANDOFF.md` and `docs/REVIEW.md`. Live hashes, actor addresses, constructor deadlines, every vote and every readback are in `deployments/studionet-release-2026-10-20.json`; `deployments/release-audit-2026-10-20.json` rechecks counts and unchanged rejected-call state without submitting transactions.
+
+## Additional live incidents 3 and 4
+
+- [0x56e7E3b200bD95ef44cea1a71cc3a626026E103f](https://explorer-studio.genlayer.com/address/0x56e7E3b200bD95ef44cea1a71cc3a626026E103f) — incident-3
+- [0x580326cD677EE0a613Aa4efAeb648A3cfa8Ed2A4](https://explorer-studio.genlayer.com/address/0x580326cD677EE0a613Aa4efAeb648A3cfa8Ed2A4) — incident-4
+
+Incident 3: **FAITHFUL / VIOLATION / VIOLATION → PIPELINE_FAULT**; only B slashed 100, A/C refunded 100 each, with C's VIOLATION retained. Incident 4: **UNCLEAR (UNAVAILABLE 404) / VIOLATION / FAITHFUL → UNATTRIBUTABLE**, AWAITING_REFUND with nobody slashed; early timeout reverted; deadline settlement refunded all 300 with zero slash and preserved the assessment.
+
+Both deploy the exact unchanged `da39762` source blob. New evidence commit `eb57d011fdea6cc3a8ddc2fa0abe798075e8d297` contains eleven LF text logs; the twelfth input reference deliberately returns 404. Twenty new transactions are FINALIZED (19 successful executions, one expected rollback), with 22 passing new readbacks. **Combined coverage: four deployments, 46 FINALIZED transactions, 50 passing readbacks.**
+
+The original sections above are preserved. See [complete extension evidence](LIVE_EXTENSIONS.md), [extension audit](../deployments/extension-audit-2026-10-20.json), and [combined manifest](../deployments/studionet-release-2026-10-20.json). The private repository/source equality is checked after publication; no Portal submission is made.

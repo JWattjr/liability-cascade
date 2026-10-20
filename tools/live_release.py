@@ -249,7 +249,10 @@ def main():
     if int(rpc('eth_chainId', []), 16) != 61999:
         raise RuntimeError('RPC is not StudioNet')
     if FILE.exists():
-        record = json.loads(FILE.read_text(encoding='utf-8'))
+        saved = json.loads(FILE.read_text(encoding='utf-8'))
+        if saved.get('extension_runs'):
+            raise RuntimeError('Original runner is archived; use tools/live_extension.py without rewriting historical entries')
+        record = saved
         if record['status'] == 'STOPPED_UNEXPECTED_JUDGMENT':
             raise RuntimeError('Unexpected judgment was recorded; owner review is required, never rerun blindly')
         if record['participants'] != participants:

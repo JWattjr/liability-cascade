@@ -59,3 +59,14 @@ HTTP 200 for every file, UTF-8 strict, LF only, no redirects followed; 1,404 exa
 | incident-a:replay-rejected | [0xa23a0ac19b28871d34537c41c29512b105d319acaca4b47ee2e83ffe47ae0c44](https://explorer-studio.genlayer.com/tx/0xa23a0ac19b28871d34537c41c29512b105d319acaca4b47ee2e83ffe47ae0c44) | FINALIZED | ERROR/rollback | terminal state |
 
 The manifest retains constructor arguments, all submitted arguments and actor aliases, full raw/decoded receipts, validator votes/receipts, source-byte checks, complete readbacks and every stored assessment. No lifecycle status is substituted for execution success. The local private release history contains the original deployment-source commit and the identical contract blob; final remote HEAD/source verification is performed after the single end-of-run push and reported to the owner.
+
+## Additional live incidents 3 and 4
+
+- [0x56e7E3b200bD95ef44cea1a71cc3a626026E103f](https://explorer-studio.genlayer.com/address/0x56e7E3b200bD95ef44cea1a71cc3a626026E103f) — incident-3
+- [0x580326cD677EE0a613Aa4efAeb648A3cfa8Ed2A4](https://explorer-studio.genlayer.com/address/0x580326cD677EE0a613Aa4efAeb648A3cfa8Ed2A4) — incident-4
+
+Incident 3: **FAITHFUL / VIOLATION / VIOLATION → PIPELINE_FAULT**; only B slashed 100, A/C refunded 100 each, with C's VIOLATION retained. Incident 4: **UNCLEAR (UNAVAILABLE 404) / VIOLATION / FAITHFUL → UNATTRIBUTABLE**, AWAITING_REFUND with nobody slashed; early timeout reverted; deadline settlement refunded all 300 with zero slash and preserved the assessment.
+
+Both deploy the exact unchanged `da39762` source blob. New evidence commit `eb57d011fdea6cc3a8ddc2fa0abe798075e8d297` contains eleven LF text logs; the twelfth input reference deliberately returns 404. Twenty new transactions are FINALIZED (19 successful executions, one expected rollback), with 22 passing new readbacks. **Combined coverage: four deployments, 46 FINALIZED transactions, 50 passing readbacks.**
+
+The original sections above are preserved. See [complete extension evidence](LIVE_EXTENSIONS.md), [extension audit](../deployments/extension-audit-2026-10-20.json), and [combined manifest](../deployments/studionet-release-2026-10-20.json). The private repository/source equality is checked after publication; no Portal submission is made.
